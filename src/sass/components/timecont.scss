@@ -1,0 +1,9 @@
+@import '../abstracts/variables.scss';
+
+.timecont {
+    background-color: $timecont;
+    width: 80%;
+    height: 30vh;
+    border-radius: 10px;
+    margin: auto;
+}
