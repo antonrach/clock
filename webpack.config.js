@@ -38,12 +38,20 @@ const cssLoader = () => {
     }
 }
 
+const serverLoad = () => {
+    if(isProd) {
+        return ['@babel/polyfill', './index.js']
+    } else {
+        return ["webpack/hot/dev-server",'webpack-dev-server/client?http://localhost:4200/', '@babel/polyfill', './index.js']
+    }
+}
+
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     devtool: 'inline-source-map',
     mode: 'development',
     entry: {
-        main: ["webpack/hot/dev-server",'webpack-dev-server/client?http://localhost:4200/', '@babel/polyfill', './index.js'],
+        main: serverLoad(),
     },
     output: {
         filename: './scripts/[name].[contenthash].js',
