@@ -1,0 +1,10 @@
+@import '../abstracts/variables.scss';
+@import '../abstracts/mixins.scss';
+@import '../fonts/fonts.scss';
+
+.time {
+    @include center;
+    color: $timecolor;
+    font-size: 16vh;
+    font-family: 'Digital 7';
+}

@@ -1,6 +1,22 @@
 .wallpaper {
-    background-image: url('~/img/Granada_Sunset.jpg');
     background-size: cover;
     height: 100vh;
     padding-top: 10vh;
+    transition: .5s;
+    &.evening {
+        background-image: url('~/img/Granada_Sunset.jpg');
+        transition: .5s;
+    }
+    &.night {
+        background-image: url('~/img/pexels-james-wheeler-1539225.jpg');
+        transition: .5s;
+    }
+    &.morning {
+        background-image: url('~/img/787691.jpg');
+        transition: .5s;
+    }
+    &.day {
+        background-image: url('~/img/sunny-day-1.jpg');
+        transition: .5s;
+    }
 }

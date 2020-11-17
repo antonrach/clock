@@ -1,0 +1,10 @@
+@import '../abstracts/variables.scss';
+
+.daycont {
+    height: 20vh;
+    background-color: $daycont;
+    width: 30%;
+    border-radius: 10px;
+    color: #ffffff;
+    position: relative;
+}

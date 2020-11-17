@@ -1,0 +1,16 @@
+@import '../abstracts/mixins.scss';
+
+.daynow {
+    @include center;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.day1 {
+    font-size: 4vh;
+    margin-bottom: 1vh;
+}
+
+.year {
+    font-size: 7vh;
+}
