@@ -1,4 +1,4 @@
-import React, {useSate, useState} from 'react';
+import React, { useState} from 'react';
 
 const options = {
     month: 'short',
@@ -12,8 +12,8 @@ const yearOptions = {
 
 const Day = (props) => {
 
-    let day = props.currenDate.toLocaleString('en-US', options);
-    let year = props.currenDate.toLocaleString('en-US', yearOptions);
+    let day = props.currentDate.toLocaleString('en-US', options);
+    let year = props.currentDate.toLocaleString('en-US', yearOptions);
     
     return (
         <div className="daynow">
