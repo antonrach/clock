@@ -10,7 +10,7 @@ const options = {
 let classWP;
 
 const setNewDay = (date, props) => {
-    if((date.getHours() === 0 || date.getHours() === 24) && date.getMinutes() === 0 && date.getSeconds() === 0 && date.getMilliseconds() === 0) {
+    if((date.getHours() === 0 || date.getHours() === 24) && date.getMinutes() === 0 && date.getSeconds() === 0) {
         props.newDate();
     }
 }
@@ -32,45 +32,46 @@ const setWallpaper = (date, props) => {
             props.newWallpaper('evening');
         }
     } else {
-        if((date.getHours() >= 0 && date.getHours() <= 4 && date.getMinutes() === 0 && date.getSeconds() === 0 && date.getMilliseconds() === 0) || (date.getHours() >= 23 && date.getHours() <= 24 && date.getMinutes() === 0 && date.getSeconds() === 0 && date.getMilliseconds() === 0)) {
+        if((date.getHours() >= 0 && date.getHours() <= 4 && date.getMinutes() === 0 && date.getSeconds() === 0) || (date.getHours() >= 23 && date.getHours() <= 24 && date.getMinutes() === 0 && date.getSeconds() === 0)) {
             classWP = 'night';
             props.newWallpaper('night');
         }
-         else if (date.getHours() >= 5 && date.getHours() <= 10 && date.getMinutes() === 0 && date.getSeconds() === 0 && date.getMilliseconds() === 0) {
+         else if (date.getHours() >= 5 && date.getHours() <= 10 && date.getMinutes() === 0 && date.getSeconds() === 0) {
             classWP = 'morning';
             props.newWallpaper('morning');
-        } else if (date.getHours() >= 11 && date.getHours() <= 16 && date.getMinutes() === 0 && date.getSeconds() === 0 && date.getMilliseconds() === 0) {
+        } else if (date.getHours() >= 11 && date.getHours() <= 16 && date.getMinutes() === 0 && date.getSeconds() === 0) {
             classWP = 'day';
             props.newWallpaper('day');
-        } else if (date.getHours() >= 17 && date.getHours() <= 22 && date.getMinutes() === 0 && date.getSeconds() === 0 && date.getMilliseconds() === 0) {
+        } else if (date.getHours() >= 17 && date.getHours() <= 22 && date.getMinutes() === 0 && date.getSeconds() === 0) {
             classWP = 'evening';
             props.newWallpaper('evening');
-        }
+        } /*else if (date.getMinutes() === 34 && date.getSeconds() === 19) {
+            console.log('GGG');
+        }*/
     }
 }
 
 const Time = (props) => {
 
-    let date = new Date();
-    const [curTime, setCurTime] = useState(date);
+    const [curTime, setCurTime] = useState(new Date());
 
     useEffect(() => {
-        setNewDay(date, props);
+        setNewDay(curTime, props);
     })
 
     useEffect(() => {
-        setWallpaper(date, props);
+        setWallpaper(curTime, props);
     })
 
-    let time = date.toLocaleTimeString('en-US', options);
+    let time = curTime.toLocaleTimeString('en-US', options);
 
     const updateTime = () => {
-        date = new Date();
-        setCurTime(date);
+        setCurTime(new Date());
     }
 
-    setInterval(updateTime, 1000);
-
+    useEffect(() => {
+        setTimeout(updateTime, 1000);  
+    }, [curTime]);
     return (
         <div className="time">
             {time}
