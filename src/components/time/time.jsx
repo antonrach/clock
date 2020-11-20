@@ -52,17 +52,27 @@ const setWallpaper = (date, props) => {
     }
 }
 
+const setFetch = (date, props) => {
+    if((date.getMinutes() === 0 && date.getSeconds() === 0) || (date.getMinutes() === 30 && date.getSeconds() === 0)) {
+        props.update();
+    }
+}
+
 const Time = (props) => {
 
     const [curTime, setCurTime] = useState(new Date());
 
     useEffect(() => {
         setNewDay(curTime, props);
-    })
+    }, [curTime])
 
     useEffect(() => {
         setWallpaper(curTime, props);
-    })
+    }, [curTime])
+
+    useEffect(() => {
+        setFetch(curTime, props);
+    }, [curTime])
 
     let time = curTime.toLocaleTimeString('en-US', options);
 

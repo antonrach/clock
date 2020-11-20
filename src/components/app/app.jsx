@@ -10,17 +10,23 @@ function App(){
 
     const [WP, setWP] = useState('');
 
+    const [weatherFetch, updateFetch] = useState(false);
+
     return(
         <div className={'wallpaper ' + WP}>
             <div className="timecont">
-                <Time newDate={() => setCurDate(new Date)} newWallpaper={(classWP) => setWP(classWP)} />
+                <Time
+                    newDate={() => setCurDate(new Date)}
+                    newWallpaper={(classWP) => setWP(classWP)}
+                    update={() => updateFetch(!weatherFetch)}
+                />
             </div>
             <div className="nextcont">
                 <div className="daycont">
                     <Day currentDate={curDate} />
                 </div>
                 <div className="weathercont">
-                    <Weather />
+                    <Weather update={weatherFetch} />
                 </div>
             </div>
         </div>

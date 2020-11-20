@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const api = {
     key: '8db32369cc3957a9e227f8422bc114df',
     base: 'http://api.openweathermap.org/data/2.5/',
 }
 
-const Weather = () => {
+let loc;
+
+const Weather = (props) => {
 
     const [query, setQuery] = useState('');
     const [weather, setWeather] = useState({});
@@ -14,12 +16,13 @@ const Weather = () => {
     const [loading, setLoading] = useState('');
     const [wellcome, setWellcome] = useState(' _active');
 
-    const search = () => {
+    const search = (query, erase) => {
         if(query !== '') {
             setWellcome('');
             setError('');
             setSuccess('');
-            setLoading(' _active')
+            setLoading(' _active');
+            loc = query;
             fetch(`${api.base}weather?q=${query}&units=metric&appid=${api.key}`)
                 .then(response => response.json())
                 .then(result => {
@@ -30,12 +33,20 @@ const Weather = () => {
                         setWeather(result);
                         setLoading('');
                         setSuccess(' _active');
-                        setQuery('');
+                        if(erase === true) {
+                            setQuery('');
+                        }
                     }
                 })
-                .catch((error) => {debugger; setLoading(''); setError(' _active')})
+                .catch(() => {debugger; setLoading(''); setError(' _active')})
         }
     }
+
+    useEffect(() => {
+        if(loc !== undefined) {
+            search(loc, false);
+        }
+    }, [props.update])
 
     return (
         <div className="weather">
@@ -44,12 +55,12 @@ const Weather = () => {
                 placeholder='Search...'
                 value={query}
                 onChange={event => setQuery(event.target.value)}
-                onKeyPress={(event => {if(event.key === 'Enter'){search()}})}
+                onKeyPress={(event => {if(event.key === 'Enter'){search(query, true)}})}
             />
             <button
                 type="button"
                 className="gobutton"
-                onClick={search}
+                onClick={() => search(query, true)}
             >
                 Go
             </button>
