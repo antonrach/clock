@@ -23,7 +23,7 @@ const Weather = () => {
             fetch(`${api.base}weather?q=${query}&units=metric&appid=${api.key}`)
                 .then(response => response.json())
                 .then(result => {
-                    if(+result.cod === 404) {
+                    if(result.cod.toString().slice(0, 1) === "4" || result.cod.toString().slice(0, 1) === "5") {
                         setLoading('');
                         setError(' _active');
                     } else {
@@ -33,7 +33,7 @@ const Weather = () => {
                         setQuery('');
                     }
                 })
-                .catch(() => {setLoading(''); setError(' _active')})
+                .catch((error) => {debugger; setLoading(''); setError(' _active')})
         }
     }
 
