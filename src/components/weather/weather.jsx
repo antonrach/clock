@@ -55,14 +55,39 @@ const Weather = () => {
             </button>
             {((typeof weather !== "undefined" && typeof weather.main !== "undefined")) ?
                 (<div className={"enter" + success}>
-                    <div className="location">{weather.name}, {weather.sys.country}</div>
-                    <div className="temperature">{Math.round(weather.main.temp)} °C</div>
-                    <div className="status">{weather.weather[0].main}</div>
+                    <div className="container">
+                        <div className="datainfo">
+                            <div className="location">{weather.name}, {weather.sys.country}</div>
+                            <div className="temperature">{Math.round(weather.main.temp)} °C</div>
+                            <div className="status">{weather.weather[0].main}</div>
+                        </div>
+                    </div>
                 </div>) : ( <div className={"enter" + success}></div> )
             }
-            <div className={"error" + error}>Sorry, cannot load weather data. Please, check your Internet connection or the proper spelling of the entered location.</div>
-            <div className={"loading" + loading}>Loading...</div>
-            <div className={"wellcome" + wellcome}>Hi! Enter any location and check out current weather anywhere in the world :)</div>
+            <div className={"error" + error}>
+                <div className="container">
+                    <div className="datainfo">
+                        Sorry, cannot load weather data.
+                        Please, check your Internet connection or the
+                        proper spelling of the entered location.
+                    </div>
+                </div>
+            </div>
+            <div className={"loading" + loading}>
+                <div className="container">
+                    <div className="datainfo">
+                        Loading...
+                    </div>
+                </div>
+            </div>
+            <div className={"wellcome" + wellcome}>
+                <div className="container">
+                    <div className="datainfo">
+                        Hi! Enter any location and check out
+                        current weather anywhere in the world :)
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
