@@ -1,0 +1,125 @@
+@import '../abstracts/variables.scss';
+@import '../abstracts/mixins.scss';
+
+.weathercont {
+    border-radius: 10px;
+    width: 50%;
+    height: 45vh;
+    background-color: $daycont;
+    color: #ffffff;
+    padding-top: 3vh;
+}
+.weather {
+    width: 80%;
+    margin: auto;
+    position: relative;
+}
+.weather > input {
+    @include placeholder;
+    width: 90%;
+    height: 4vh;
+    border-radius: 5px;
+    outline: none;
+    border: 1px transparent solid;
+    padding-left: 6px;
+    font-size: 3vh;
+    transition: .2s;
+    margin-bottom: 2vh;
+    margin-right: 1%;
+    vertical-align: middle;
+}
+.weather > input:focus {
+    transition: .2s;
+    box-shadow: 0px 0px 5px 2px rgba(255,255,255,0.75);
+}
+
+.location {
+    color: #ffffff;
+    text-align: center;
+    font-size: 4vh;
+    margin-bottom: 2vh;
+}
+
+.temperature {
+    color: #ffffff;
+    font-size: 8vh;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1vh;
+}
+
+.status {
+    color: #ffffff;
+    text-align: center;
+    font-size: 6vh;
+    font-weight: 500;
+}
+.gobutton {
+    width: 9%;
+    outline: none;
+    height: 4vh;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 2vh;
+    margin-top: 0;
+    vertical-align: middle;
+    background-color: #0a9dff;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 2vh;
+    transition: .2s;
+}
+.gobutton:hover {
+    cursor: pointer;
+    transition: .2s;
+    background-color:#00c27b;
+
+}
+.enter._active {
+    display: block;
+}
+.enter {
+    display: none;
+    position: absolute;
+    width: 100%;
+}
+
+.error {
+    display: none;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 4vh;
+    font-weight: bold;
+    color: #ff8f8f;
+}
+.error._active {
+    display: block;
+}
+.loading {
+    display: none;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 4vh;
+    font-weight: bold;
+    color: #8fffa9;
+    padding-top: 10vh;
+}
+.loading._active {
+    display: block;
+}
+
+.wellcome {
+    display: none;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 4.5vh;
+    color: #ffffff;
+    padding-top: 7vh;
+}
+.wellcome._active {
+    display: block;
+}

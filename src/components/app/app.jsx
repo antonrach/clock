@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Time from '../time/';
 import Day from '../day';
+import Weather from '../weather';
 
 function App(){
 
@@ -17,6 +18,9 @@ function App(){
             <div className="nextcont">
                 <div className="daycont">
                     <Day currentDate={curDate} />
+                </div>
+                <div className="weathercont">
+                    <Weather />
                 </div>
             </div>
         </div>
