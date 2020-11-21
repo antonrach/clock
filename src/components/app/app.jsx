@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Time from '../time/';
 import Day from '../day';
 import Weather from '../weather';
+import ResetButton from '../resetButton';
 
 function App(){
 
@@ -11,6 +12,8 @@ function App(){
     const [WP, setWP] = useState('');
 
     const [weatherFetch, updateFetch] = useState(false);
+    const [clearLoc, setClear] = useState(false);
+    const [backClear, setBC] = useState(false);
 
     return(
         <div className={'wallpaper ' + WP}>
@@ -26,9 +29,17 @@ function App(){
                     <Day currentDate={curDate} />
                 </div>
                 <div className="weathercont">
-                    <Weather update={weatherFetch} />
+                    <Weather
+                        update={weatherFetch}
+                        resetLocation={clearLoc}
+                        disableButton={() => setBC(!backClear)}
+                    />
                 </div>
             </div>
+            <ResetButton
+                resetLocation={() => setClear(!clearLoc)}
+                disableButton={backClear}
+            />
         </div>
     )
 }

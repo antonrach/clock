@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 const api = {
     key: '8db32369cc3957a9e227f8422bc114df',
@@ -6,6 +6,7 @@ const api = {
 }
 
 let loc;
+let resFlag = false;
 
 const Weather = (props) => {
 
@@ -23,6 +24,8 @@ const Weather = (props) => {
             setSuccess('');
             setLoading(' _active');
             loc = query;
+            localStorage.setItem('location', loc);
+            props.disableButton();
             fetch(`${api.base}weather?q=${query}&units=metric&appid=${api.key}`)
                 .then(response => response.json())
                 .then(result => {
@@ -42,6 +45,32 @@ const Weather = (props) => {
         }
     }
 
+    const resetLocation = () => {
+        loc = undefined;
+        localStorage.removeItem('location')
+        setError('');
+        setSuccess('');
+        setLoading('');
+        setWellcome(' _active');
+        setWeather({});
+        //console.log('dfdfd');
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem('location') !== null) {
+            loc = localStorage.getItem('location');
+            search(loc, false);
+        }
+    }, []);
+
+    useEffect(() => {
+        if(resFlag) {
+            resetLocation();
+        } else {
+            resFlag = true;
+        }
+    }, [props.resetLocation])
+
     useEffect(() => {
         if(loc !== undefined) {
             search(loc, false);
@@ -52,7 +81,7 @@ const Weather = (props) => {
         <div className="weather">
             <input
                 type="text"
-                placeholder='Search...'
+                placeholder='Search location...'
                 value={query}
                 onChange={event => setQuery(event.target.value)}
                 onKeyPress={(event => {if(event.key === 'Enter'){search(query, true)}})}
