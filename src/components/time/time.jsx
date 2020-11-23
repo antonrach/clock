@@ -207,8 +207,8 @@ const Time = (props) => {
     }
 
     useEffect(() => {
-        setTimeout(updateTime, 1000);  
-    }, [curTime]);
+        setInterval(updateTime, 1000);  
+    }, []);
     return (
         <div className="time">
             {time}
